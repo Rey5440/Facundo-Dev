@@ -1,0 +1,31 @@
+/* .FooterCont {
+    position: absolute;
+    top: calc(100% - 75px);
+    left: calc(50% - 130px);
+} */
+
+.FooterSubCont {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 260px;
+    padding: 5px;
+    background-color: #0b0221;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.FooterSubCont:hover {
+    background-color: #13033c;
+}
+
+.iconFooter {
+    cursor: pointer;
+    width: 40px;
+    margin: 10px;
+    transition: .3s;
+}
+
+.iconFooter:hover {
+    transform: translateY(-4px);
+}

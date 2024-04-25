@@ -1,0 +1,93 @@
+.NavCont {
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background-color: #0b0221;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.NavsubCont {
+    display: flex;
+}
+
+@font-face {
+    font-family: "Batangas";
+    src: url("../../fonts/Batangas-Bold.woff2") format("truetype");
+}
+
+.Navlogo {
+    color: #5ec300;
+    font-family: Batangas;
+    font-size: 25px;
+}
+
+.NavButton {
+    margin-left: 10px;
+    font-size: 15px;
+    /* Agrega espacio entre los botones */
+}
+
+.NavButton {
+    color: #5ec300;
+    display: block;
+    /* Hace que el botón sea un bloque */
+    border: none;
+    /* Elimina el borde del botón */
+    background: none;
+    /* Elimina el fondo del botón */
+    padding: 0;
+    /* Elimina el relleno del botón */
+    text-align: left;
+    /* Alinea el texto del botón a la izquierda */
+    cursor: pointer;
+    /* Cambia el cursor a una mano */
+    border-bottom: 2px solid transparent;
+    /* Inicialmente sin borde */
+    background-image: linear-gradient(to right, rgb(112, 165, 42) 0%, rgb(112, 165, 42) 0%);
+    /* Gradiente lineal marrón */
+    background-size: 0% 2px;
+    /* Ancho inicial del borde (0%) */
+    background-repeat: no-repeat;
+    /* No repetir el fondo */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.NavButton.unSelected:hover {
+    background-color: #341088f3;
+    color: #a2a2a2;
+}
+
+.NavButton.selected {
+    cursor: default;
+    background-size: 100% 2px;
+    /* Ancho completo del borde (100%) */
+    background-position: left bottom;
+    /* Iniciar desde la izquierda */
+    transition: background-size 0.5s ease;
+    /* Agregar transición para el efecto de aparición */
+    animation: blink 0.3s;
+    /* Aplica la animación de parpadeo */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    /* Visible */
+    50% {
+        opacity: 0;
+    }
+
+    /* Invisible */
+    100% {
+        opacity: 1;
+    }
+
+    /* Visible */
+}

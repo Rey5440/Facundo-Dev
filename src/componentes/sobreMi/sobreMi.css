@@ -1,0 +1,127 @@
+/* Contenedor de Sobre mi */
+.AboutCont {
+    display: flex;
+    max-width: 750px;
+    /* max-height: 75vh; */
+    /* overflow-y: scroll; */
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 100px 10px 60px 10px ;
+    background-color: #341088f3;
+}
+.CardAbout {
+    display: flex;
+    flex-direction: column;
+    background-color: #341088f3;
+
+}
+.TitleandImage {
+    display: flex;
+    justify-content: space-around;
+}
+/* Contenedor de la imagen y el background de la imagen */
+.ImageContainer {
+    display: flex;
+    position: relative;
+    /* margin-right: 7%; */
+}
+
+/* Imagen */
+.ImageFac {
+    height: 120px;
+    border: 2px solid #5ec300;
+    border-radius: 2px;
+    position: relative;
+    transform: rotate(1deg);
+    z-index: 1;
+}
+
+/* Fondo de la imagen */
+.ImageBackground {
+    height: 100%;
+    width: 100%;
+    background-color: #1a0745;
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    transform: rotate(2deg);
+}
+
+/* Texto del sobre mi */
+.AboutText {
+    color: #a2a2a2;
+    text-indent: 15px;
+}
+
+.Fullstack {
+    display: flex;
+}
+
+.Letter {
+    font-size: 25px;
+}
+
+.LetterAnimated {
+    font-size: 25px;
+    animation-name: TextAnimated;
+    /* Nombre de la animación */
+    animation-duration: 0.2s;
+    /* Duración de la animación en segundos */
+    animation-timing-function: ease-in-out;
+    /* Función de temporización para suavizar la animación */
+}
+
+@keyframes TextAnimated {
+    0% {
+        transform: scale(1);
+        /* Tamaño inicial del texto */
+
+    }
+
+    25% {
+        color: rgb(12, 56, 248);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    50% {
+        color: rgb(93, 36, 228);
+        transform: scale(1.4);
+        /* Tamaño máximo del texto */
+    }
+
+    75% {
+        color: rgb(226, 43, 128);
+    }
+
+    100% {
+        color: rgb(235, 91, 98);
+        transform: scale(1);
+        /* Tamaño original del texto */
+    }
+}
+
+.Webdeveloper {
+    background: linear-gradient(to right, blueviolet, cyan, blueviolet);
+    width: fit-content;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: 3s gradient linear infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 75%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 75%;
+    }
+}
+
