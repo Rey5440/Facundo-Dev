@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Nav from "./componentes/nav/nav";
 import SobreMi from "./componentes/sobreMi/sobreMi";
@@ -10,63 +10,58 @@ import ParticlesBackground from "./componentes/particlesBackground";
 const App = () => {
   const [selected, setSelected] = useState("Sobre Mí");
   const [prevSelected, setPrevSelected] = useState("");
+  const [resizing, setResizing] = useState(false);
 
   const handleSelected = (prop) => {
     setPrevSelected(selected);
     setSelected(prop);
   };
 
-  //   const handleTouchMove = (event, place) => {
-  //     if (event.touches && event.touches.length === 1) {
-  //       const currentX = event.touches[0].clientX;
-  //       const deltaX = currentX - initialSwipe;
+  const handleResizeStart = () => {
+    setResizing(true);
+  };
 
-  //       if (Math.abs(deltaX) > 50) {
-  //         if (deltaX > 0 && place !== "proyectos") {
-  //           // Deslizamiento hacia la derecha, selecciona "Proyectos"
-  //           setSelected("Proyectos");
-  //         } else if (deltaX < 50 && place !== "sobre mi") {
-  //           // Deslizamiento hacia la izquierda, selecciona "Sobre Mí"
-  //           setSelected("Sobre Mí");
-  //         }
-  //       }
-  //     }
-  //   };
+  const handleResizeEnd = () => {
+    setResizing(false);
+  };
 
-  //   const handleTouchStart = (event) => {
-  //     if (event.touches && event.touches.length === 1) {
-  //       setInitialSwipe(event.touches[0].clientX);
-  //     }
-  //   };
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      if (!resizing) {
+        // Procesar cambios de tamaño solo si no se están realizando animaciones
+        // ...
+      }
+    });
 
-  //   const handleTouchEnd = () => {
-    //     setInitialSwipe(0);
-    //   };
+    // Observar elementos que pueden cambiar de tamaño
+    // observer.observe(elemento1);
+    // observer.observe(elemento2);
     
-    return (
-      <div className="App">
+    return () => {
+      observer.disconnect(); // Desconectar el observador al desmontar el componente
+    };
+  }, [resizing]);
+
+  return (
+    <div className="App" onMouseDown={handleResizeStart} onMouseUp={handleResizeEnd}>
       <ParticlesBackground />
       <Nav selected={selected} handleSelected={handleSelected} />
       <AnimatePresence mode="wait">
         {selected === "Sobre Mí" && (
           <motion.div
-          key="sobre-mi"
-          initial={
-            prevSelected !== ""
-            ? { opacity: 0, x: "-100%" }
-            : { opacity: 0, y: "100%" }
-          }
-          animate={
-            prevSelected !== "" ? { opacity: 1, x: 0 } : { opacity: 1, y: 0 }
-          }
-          exit={{ opacity: 0, x: "-100%" }}
-          transition={{ duration: 0.5 }}
+            key="sobre-mi"
+            initial={
+              prevSelected !== ""
+                ? { opacity: 0, x: "-100%" }
+                : { opacity: 0, y: "100%" }
+            }
+            animate={
+              prevSelected !== "" ? { opacity: 1, x: 0 } : { opacity: 1, y: 0 }
+            }
+            exit={{ opacity: 0, x: "-100%" }}
+            transition={{ duration: 0.5 }}
           >
-            <div
-            // onTouchStart={handleTouchStart}
-            // onTouchMove={(e) => handleTouchMove(e, "sobre mi")}
-            // onTouchEnd={handleTouchEnd}
-            >
+            <div>
               <SobreMi />
             </div>
           </motion.div>
@@ -79,17 +74,13 @@ const App = () => {
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.5 }}
           >
-            <div
-            // onTouchStart={handleTouchStart}
-            // onTouchMove={(e) => handleTouchMove(e, "proyectos")}
-            // onTouchEnd={handleTouchEnd}
-            >
+            <div>
               <Proyectos handleSelected={handleSelected} />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      <br></br>
+      <br />
       <div>
         <Footer />
       </div>

@@ -1,7 +1,7 @@
 .NavCont {
     height: 60px;
     position: fixed;
-    width: 100%;
+    width: 100vw;
     z-index: 999;
     background-color: #0b0221;
     display: flex;
