@@ -1,15 +1,20 @@
 .App {
   position: relative;
-  /* height: 100vh; */
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 200%;
+  
   background-color: #1a0745;
   color: #a2a2a2;
 }
 
+@media (min-width: 560px) and (min-height: 600px) {
+  .App {
+    height: 100vh; /* Altura para pantallas pequeñas */
+  }
+}
 @font-face {
   font-family: 'Raleway';
   src: url('./fonts/Raleway-VariableFont_wght.ttf') format('woff');

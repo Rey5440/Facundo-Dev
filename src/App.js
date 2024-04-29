@@ -10,40 +10,14 @@ import ParticlesBackground from "./componentes/particlesBackground";
 const App = () => {
   const [selected, setSelected] = useState("Sobre Mí");
   const [prevSelected, setPrevSelected] = useState("");
-  const [resizing, setResizing] = useState(false);
 
   const handleSelected = (prop) => {
     setPrevSelected(selected);
     setSelected(prop);
   };
 
-  const handleResizeStart = () => {
-    setResizing(true);
-  };
-
-  const handleResizeEnd = () => {
-    setResizing(false);
-  };
-
-  useEffect(() => {
-    const observer = new ResizeObserver((entries) => {
-      if (!resizing) {
-        // Procesar cambios de tamaño solo si no se están realizando animaciones
-        // ...
-      }
-    });
-
-    // Observar elementos que pueden cambiar de tamaño
-    // observer.observe(elemento1);
-    // observer.observe(elemento2);
-    
-    return () => {
-      observer.disconnect(); // Desconectar el observador al desmontar el componente
-    };
-  }, [resizing]);
-
   return (
-    <div className="App" onMouseDown={handleResizeStart} onMouseUp={handleResizeEnd}>
+    <div className="App">
       <ParticlesBackground />
       <Nav selected={selected} handleSelected={handleSelected} />
       <AnimatePresence mode="wait">
